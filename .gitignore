@@ -6,6 +6,8 @@ dist/
 
 # dependencies
 node_modules/
+package-lock.json
+.vscode
 
 # logs
 npm-debug.log*
