@@ -5,7 +5,7 @@ export interface Props {
 	href: string;
 }
 
-const { href, title, body } = Astro.props;
+const { href, title, body, img } = Astro.props;
 ---
 
 <li class="link-card">
@@ -17,6 +17,8 @@ const { href, title, body } = Astro.props;
 		<p>
 			{body}
 		</p>
+		
+		<img src={img} alt="photo"/>
 	</a>
 </li>
 <style>
