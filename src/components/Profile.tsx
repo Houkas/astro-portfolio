@@ -4,7 +4,7 @@ export default function Profile() {
     
     return(
         <div class="w-full flex flex-col justify-center items-center">
-            <h1 class='text-center'>RICHARD<br/>Hugo</h1>
+            <h1 class='text-center uppercase relative top-2 title-hugo'>Hugo<br/>RICHARD</h1>
             <img src={profilePhoto} alt="photo de profile RICHARD Hugo" class="h-auto" style={'max-width:287px;'}/>
         </div>
     );
