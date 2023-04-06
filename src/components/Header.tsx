@@ -7,7 +7,7 @@ export default function Header(){
 
     return(
         <>
-            <div class="flex flex-row-reverse ">
+            <div class="flex flex-row-reverse fixed top-0 right-0">
                 <img class="cursor-pointer relative z-[11]" src="/burger_bg.svg" alt="menu burger" onClick={() => setIsMenuDisplaied(!isMenuDisplaied())} />
             </div>
 
