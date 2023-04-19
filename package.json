@@ -14,12 +14,14 @@
     "@astrojs/solid-js": "^2.1.0",
     "@astrojs/svelte": "^2.1.0",
     "@astrojs/tailwind": "^3.1.1",
-    "astro": "^2.2.0",
-    "solid-js": "^1.7.2",
+    "astro": "^2.3.0",
+    "astro-compress": "^1.1.36",
+    "solid-js": "^1.7.3",
     "svelte": "^3.58.0",
+    "swiper": "^9.2.3",
     "tailwindcss": "^3.3.1"
   },
   "devDependencies": {
-    "sass": "^1.61.0"
+    "sass": "^1.62.0"
   }
 }
