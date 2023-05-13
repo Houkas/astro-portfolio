@@ -1,34 +1,32 @@
+ 
+ <!-- Swiper JS -->
+
+<!-- Initialize Swiper -->
 <script>
-  import Swiper from 'swiper';
-  import 'swiper/css';
-  import 'swiper/css/navigation';
-  import 'swiper/css/pagination';
-  var swiper = new Swiper(".mySwiper", {
-      pagination: {
-        el: ".swiper-pagination",
-      },
-  });
+  // import function to register Swiper custom elements
+import { register } from 'swiper/element/bundle';
+// register Swiper custom elements
+register();
 
 </script>
-
-
-<div class="swiper mySwiper">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide">Slide 1</div>
-    <div class="swiper-slide">Slide 2</div>
-    <div class="swiper-slide">Slide 3</div>
-    <div class="swiper-slide">Slide 4</div>
-    <div class="swiper-slide">Slide 5</div>
-    <div class="swiper-slide">Slide 6</div>
-    <div class="swiper-slide">Slide 7</div>
-    <div class="swiper-slide">Slide 8</div>
-    <div class="swiper-slide">Slide 9</div>
-  </div>
-  <div class="swiper-pagination"></div>
+ 
+<div class="flex flex-row items-center justify-center h-screen">
+  <swiper-container >
+    <swiper-slide class="flex flex-row items-center justify-center">
+      <div class="flex flex-row items-center justify-center w-[50px] bg-red-900 h-[50px]">
+          test
+      </div>
+    </swiper-slide>
+    <swiper-slide>Slide 2</swiper-slide>
+    <swiper-slide>Slide 3</swiper-slide>
+  </swiper-container>
 </div>
 
+
+
+
 <style>
-    .swiper {
+   .swiper {
       width: 100%;
       height: 100%;
     }
