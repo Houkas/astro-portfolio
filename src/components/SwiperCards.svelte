@@ -1,50 +1,60 @@
- 
- <!-- Swiper JS -->
+  <!-- Initialize Swiper -->
+<script lang="ts">
+    import { onMount } from 'svelte';
+    import type { Photo } from '../models/photo';
+    // import function to register Swiper custom elements
+    import { register } from 'swiper/element/bundle';
 
-<!-- Initialize Swiper -->
-<script>
-  // import function to register Swiper custom elements
-import { register } from 'swiper/element/bundle';
-// register Swiper custom elements
-register();
+    // register Swiper custom elements
+    register();
 
+    let photos: Photo[] =[];
+
+    onMount(async () => {
+      await fetch('https://api.hugo-richard-work.fr/api/photos')
+      .then(r => r.json())
+      .then(respPhotos => {
+        photos = respPhotos.data;
+      });
+      console.log(photos)
+    });
 </script>
  
-<div class="flex flex-row items-center justify-center h-screen">
-  <swiper-container >
-    <swiper-slide class="flex flex-row items-center justify-center">
-      <div class="flex flex-row items-center justify-center w-[50px] bg-red-900 h-[50px]">
-          test
-      </div>
-    </swiper-slide>
-    <swiper-slide>Slide 2</swiper-slide>
-    <swiper-slide>Slide 3</swiper-slide>
+<div class="flex flex-col h-screen">
+
+  <h2 class='text-center uppercase relative top-2 title-hugo m-5'>Passionné</h2>
+
+  <swiper-container pagination="true" class="w-screen h-[45vh] md:h-screen">
+    {#each photos as photo}
+      <swiper-slide class="flex flex-row items-center ">
+        <div class="flex flex-row items-center justify-center ">
+            <a href={photo.attributes.lien_photo}>
+              <img class="block  sm:w-full lg:w-1/2" src={photo.attributes.lien_photo} alt="test">
+            </a>
+            
+        </div>
+      </swiper-slide>
+    {/each}
   </swiper-container>
+
 </div>
 
-
-
-
 <style>
-   .swiper {
-      width: 100%;
-      height: 100%;
-    }
 
-    .swiper-slide {
+
+    swiper-slide {
       text-align: center;
       font-size: 18px;
-      background: #fff;
+
       display: flex;
       justify-content: center;
       align-items: center;
+      
     }
 
-    .swiper-slide img {
+    swiper-slide img {
       display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
     }
+    
 </style>
 
