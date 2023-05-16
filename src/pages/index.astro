@@ -2,14 +2,17 @@
 import Layout from '../layouts/Layout.astro';
 import Profile from '../components/Profile';
 import SwiperCards from '../components/SwiperCards.svelte';
+import Header from '../components/Header';
+import Informations from '../components/Informations.svelte';
 ---
 
 <Layout title="Hugo RICHARD développeur web / mobile - Photographe amateur sur Bordeaux">
-	<div class="noise"></div>
+	
 	<main>
+		<Header client:load></Header>
 		<Profile />
 		<SwiperCards client:only/>
-
+		<Informations client:load/>
 	</main>
 </Layout>
 

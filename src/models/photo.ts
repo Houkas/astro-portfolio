@@ -4,7 +4,8 @@ interface PhotoAttributes{
     createdAt: Date,
     updatedAt: Date,
     publishedAt: Date,
-    lien_photo: string
+    lien_photo: string,
+    description: string
 
 }
 
