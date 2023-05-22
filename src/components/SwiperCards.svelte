@@ -20,22 +20,24 @@
     });
 </script>
  
-<div class="flex flex-col h-screen">
+<div class="flex flex-col h-screen justify-center">
 
   <h2 class='text-center uppercase relative top-2 title-hugo m-5'>Passionné</h2>
 
-  <swiper-container pagination="true" class="w-screen h-[45vh] md:h-screen">
-    {#each photos as photo}
-      <swiper-slide class="flex flex-row items-center ">
-        <div class="flex flex-row items-center justify-center ">
-            <a href={photo.attributes.lien_photo} class="flex flex-row items-center justify-center">
-              <img class="block  sm:w-full lg:w-1/2" src={photo.attributes.lien_photo} alt="test">
-            </a>
-            
-        </div>
-      </swiper-slide>
-    {/each}
-  </swiper-container>
+    <swiper-container pagination="true" class="flex flex-row items-center w-screen h-[45vh] md:h-screen">
+      {#each photos as photo}
+        <swiper-slide class="flex flex-row items-center ">
+          <div class="flex flex-row items-center justify-center ">
+              <a href={photo.attributes.lien_photo} class="flex flex-row items-center justify-center">
+                <img class="block  sm:w-full lg:w-1/2" src={photo.attributes.lien_photo} alt="test">
+              </a>
+              
+          </div>
+        </swiper-slide>
+      {/each}
+    </swiper-container>
+
+
 
 </div>
 
