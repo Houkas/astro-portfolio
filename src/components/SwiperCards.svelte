@@ -1,31 +1,33 @@
   <!-- Initialize Swiper -->
-<script lang="ts">
+<script>
     import { onMount } from 'svelte';
-    import type { Photo } from '../models/photo';
+    //import type { Photo } from '../models/photo';
     // import function to register Swiper custom elements
     import { register } from 'swiper/element/bundle';
-
     // register Swiper custom elements
     register();
     
+  let photos = [];
 
-    let photos: Photo[] =[];
-
-    onMount(async () => {
-      await fetch('https://api.hugo-richard-work.fr/api/photos')
-      .then(r => r.json())
-      .then(respPhotos => {
-        photos = respPhotos.data;
-      });
-
+  onMount(async () => {
+    await fetch('https://api.hugo-richard-work.fr/api/photos')
+    .then(r => r.json())
+    .then(respPhotos => {
+      photos = respPhotos.data;
     });
+
+    const swiperEl = document.querySelector('swiper-container');
+    
+    swiperEl.initialize();
+
+  });
 </script>
  
 <div class="flex flex-col h-screen justify-center">
 
   <h2 class='text-center uppercase relative top-2 title-hugo m-5'>Passionné</h2>
 
-    <swiper-container pagination="true" init="true" class="flex flex-row items-center w-screen h-[45vh] md:h-screen">
+    <swiper-container pagination="true" init="false" css-mode="true" observer="true" observeParents="true" class="flex flex-row items-center w-screen h-[45vh] md:h-screen">
       {#each photos as photo, i}
         {#if i < 3}
           <swiper-slide class="flex flex-row items-center ">
