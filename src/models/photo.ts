@@ -6,6 +6,8 @@ interface PhotoAttributes{
     publishedAt: Date,
     lien_photo: string,
     description: string
+    photo_compressed: string,
+    lien_photo_compressed: string,
 
 }
 

@@ -34,7 +34,7 @@
         {#if i < 3}
           <swiper-slide class="flex flex-row items-center ">
             <div class="flex flex-row items-center justify-center ">
-                <a href={photo.attributes.lien_photo} class="flex flex-row items-center justify-center">
+                <a href="/photos" class="flex flex-row items-center justify-center">
                   <img class="block  sm:w-full lg:w-1/2" src={photo.attributes.lien_photo} alt="test">
                 </a>
                 
