@@ -8,12 +8,14 @@
     register();
     
   let photos = [];
+  let photosSuffled = [];
 
   onMount(async () => {
     await fetch('https://api.hugo-richard-work.fr/api/photos')
     .then(r => r.json())
     .then(respPhotos => {
       photos = respPhotos.data;
+      photosSuffled = photos.sort((a, b) => 0.35 - Math.random());
     });
 
     const swiperEl = document.querySelector('swiper-container');
@@ -28,7 +30,7 @@
   <h2 class='text-center uppercase relative top-2 title-hugo m-5'>Passionné</h2>
 
     <swiper-container pagination="true" init="false" class="flex flex-row items-center w-screen h-[45vh] md:h-screen">
-      {#each photos as photo, i}
+      {#each photosSuffled as photo, i}
         {#if i < 3}
           <swiper-slide class="flex flex-row items-center ">
             <div class="flex flex-row items-center justify-center ">
