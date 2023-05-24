@@ -13,13 +13,14 @@ export default function Header() {
           onClick={() => setIsMenuDisplaied(!isMenuDisplaied())}
         />
       </div>
+      {isMenuDisplaied() === true && (
       <div
         class={
           "header-fullscreen " +
           (isMenuDisplaied() === true ? "fade-in" : "fade-out")
         }
       >
-        {isMenuDisplaied() === true && (
+
           <div class="flex flex-col justify-center items-center h-[100vh]">
             <img
               src="/close.svg"
@@ -34,11 +35,17 @@ export default function Header() {
               <li class="menu-item">
                 <a href="/photos">Photos</a>
               </li>
-              <li class="menu-item">Contact</li>
+              <li class="menu-item">
+                <a href="https://www.instagram.com/hugo_richard_/" target="_blank">
+                  <img src="/public/icon_instagram.svg" alt="lien vers mon instagram"/>
+                </a>
+                
+              </li>
             </ul>
           </div>
-        )}
+        
       </div>
+      )}
     </>
   );
 }
