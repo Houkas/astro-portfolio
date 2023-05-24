@@ -26,9 +26,9 @@
 
   <swiper-container pagination="true" class="w-screen h-[45vh] md:h-screen">
     {#each photos as photo}
-      <swiper-slide class="flex flex-row items-center ">
-        <div class="flex flex-row items-center justify-center ">
-            <a href={photo.attributes.lien_photo} class="flex flex-row items-center justify-center">
+      <swiper-slide class="flex flex-row items-center w-screen">
+        <div class="flex flex-row items-center justify-center w-screen">
+            <a href={photo.attributes.lien_photo} class="flex flex-row items-center justify-center w-screen">
               <img class="block  sm:w-full lg:w-1/2" src={photo.attributes.lien_photo} alt="test">
             </a>
             

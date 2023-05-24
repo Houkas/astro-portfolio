@@ -13,7 +13,7 @@ export default function Header(){
 
 
             <div class={"header-fullscreen " + (isMenuDisplaied() === true ? 'fade-in': 'fade-out')} >
-                <div class="flex flex-col justify-center items-center h-[100vh]">
+                <div class={"flex-col justify-center items-center h-[100vh] " + (isMenuDisplaied() === true ? 'flex': 'hidden')}>
                     <img src="/close.svg" alt="close button" class="close-button " onClick={() => setIsMenuDisplaied(!isMenuDisplaied())} />
                     <ul>
                         <li class="menu-item"><a href="/">Accueil</a></li>
