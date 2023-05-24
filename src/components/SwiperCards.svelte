@@ -27,7 +27,7 @@
 
   <h2 class='text-center uppercase relative top-2 title-hugo m-5'>Passionné</h2>
 
-    <swiper-container pagination="true" init="false" css-mode="true" observer="true" observeParents="true" class="flex flex-row items-center w-screen h-[45vh] md:h-screen">
+    <swiper-container pagination="true" init="false" class="flex flex-row items-center w-screen h-[45vh] md:h-screen">
       {#each photos as photo, i}
         {#if i < 3}
           <swiper-slide class="flex flex-row items-center ">
