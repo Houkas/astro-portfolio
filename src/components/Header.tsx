@@ -37,7 +37,7 @@ export default function Header() {
               </li>
               <li class="menu-item">
                 <a href="https://www.instagram.com/hugo_richard_/" target="_blank">
-                  <img src="/public/icon_instagram.svg" alt="lien vers mon instagram"/>
+                  <img src="/icon_instagram.svg" alt="lien vers mon instagram"/>
                 </a>
                 
               </li>
