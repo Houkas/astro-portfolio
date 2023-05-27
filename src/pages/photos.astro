@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import type { Photo } from '../models/photo';
-import Profile from '../components/Profile';
+
 import ListPhotos from '../components/listPhotos.svelte';
 import Header from '../components/Header';
 const response = await fetch('https://api.hugo-richard-work.fr/api/photos');
@@ -11,7 +11,7 @@ const photos: Photo[] = data.data;
 ---
 
 <Layout title="Photos - photos amateur">
-	<div class="noise"></div>
+
 	<main>
 		<Header client:load></Header>
 		<ListPhotos client:load/>

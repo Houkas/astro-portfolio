@@ -44,11 +44,11 @@
 <div
     class="fixed h-screen w-screen bg-white flex flex-col justify-center items-center"
 >
-    <div class="absolute top-[50px] right-[0] cursor-pointer">
+    <div class="absolute z-[999] top-[50px] right-[10px] cursor-pointer">
         <img
             src="/close_dark.svg"
             alt="close button"
-            class="close-button"
+            class="close-button "
             on:click={() => (photoSelectedDisplayed = !photoSelectedDisplayed)}
             on:keydown={() => {}}
         />
@@ -73,6 +73,7 @@
                 />
             </a>
         </div>
+        <span class="title-photo">{photo?.attributes.description}</span>
     </div>
 </div>
 

@@ -6,18 +6,22 @@
 $brown: #484139;
 $dbrown: #201C18;
 $cream: #DEC9AF;
-*{
+
+* {
     margin: 0;
     padding: 0;
 }
+
 html {
+
     //background-color: rgb(230, 229, 229) !important;
-    body{
+    body {
         background-color: $cream;
         //color: white;
         overflow-x: hidden;
     }
-    .noise::before{
+
+    .noise::before {
         position: fixed;
         top: 0;
         left: 0;
@@ -25,15 +29,17 @@ html {
         height: 100vh;
         content: "";
         /* you ca&n control opacity of noise  */
-        opacity: .05;  
+        opacity: .05;
         z-index: 10;
         pointer-events: none;
-        background: url(/noise.gif) ;
+        background: url(/noise.gif);
     }
-    main{
+
+    main {
         position: relative;
         z-index: 11;
     }
+
     input,
     textarea {
         background-color: rgb(230, 229, 229);
@@ -47,7 +53,7 @@ html {
         font-family: 'Tinos', serif;
     }
 
-    .title-hugo{
+    .title-hugo {
         font-size: 42px;
         line-height: 45px;
         font-weight: 500;
@@ -55,7 +61,16 @@ html {
         letter-spacing: 5px;
         font-family: 'Noto Serif', serif;
     }
-    .passions{
+
+    .title-photo {
+        font-size: 20px;
+        font-weight: 500;
+        color: $brown;
+        letter-spacing: 3px;
+        font-family: 'Noto Serif', serif;
+    }
+
+    .passions {
         margin-top: 10px;
         font-size: 16px;
         color: $brown;
@@ -68,80 +83,96 @@ html {
     label {
         font-family: 'Raleway', sans-serif;
     }
+
     .img-container {
         position: relative;
     }
+
     .img-container svg {
         position: absolute;
         top: 0px;
         right: 0px;
     }
-    .trash-button{
+
+    .trash-button {
         display: block;
         margin-top: -15px;
     }
-    .admin-menu{
+
+    .admin-menu {
         left: -75px !important;
     }
-    .bg-brown{
+
+    .bg-brown {
         background-color: $brown;
     }
-    .text-brown{
+
+    .text-brown {
         color: $brown;
     }
-    .border-brown{
+
+    .border-brown {
         border-color: $brown;
     }
-    .bg-cream{
+
+    .bg-cream {
         background-color: $cream;
     }
-    .text-cream{
+
+    .text-cream {
         color: $cream;
     }
-    .border-cream{
+
+    .border-cream {
         border-color: $cream;
     }
-    .bg-dbrown{
+
+    .bg-dbrown {
         background-color: $dbrown;
     }
-    .text-dbrown{
+
+    .text-dbrown {
         color: $dbrown;
     }
-    .border-dbrown{
+
+    .border-dbrown {
         border-color: $dbrown;
     }
-    .header-fullscreen{
+
+    .header-fullscreen {
 
         animation-duration: 1s;
         position: fixed;
         background-color: $dbrown;
         width: 100%;
         height: 150vh;
-        top:0;
+        top: 0;
         left: 0;
 
 
-        .close-button{
+        .close-button {
             position: absolute;
             top: 20px;
             right: 20px;
             cursor: pointer;
         }
     }
+
     .fade-in {
         z-index: 20;
         opacity: 1;
         transition: opacity 0.5s ease-in-out;
     }
-      
-      .fade-out {
+
+    .fade-out {
         opacity: 0;
         z-index: 0;
         transition: opacity 0.5s ease-in-out;
     }
-    ul{
-        .menu-item{
-            color:$cream;
+
+    ul {
+        .menu-item {
+            color: $cream;
             font-size: 50px;
             font-family: 'Tinos', serif;
             margin: 10px;
@@ -153,12 +184,34 @@ html {
             justify-content: center;
         }
     }
-    
 
-    @media screen and (max-width: 640px){
-        .add-photo{
+
+    @media screen and (max-width: 640px) {
+        .add-photo {
             width: 100%;
         }
     }
 }
 
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: $cream;
+    opacity: 0;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: $brown;
+    opacity: 0;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: $dbrown;
+}
