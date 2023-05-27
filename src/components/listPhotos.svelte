@@ -8,7 +8,7 @@
   let photoSelected: Photo | null = null;
 
   onMount(async () => {
-    await fetch("https://api.hugo-richard-work.fr/api/photos")
+    await fetch("https://api.hugo-richard-work.fr/api/photos?pagination[page]=1&pagination[pageSize]=1000")
       .then((r) => r.json())
       .then((respPhotos) => {
         photos = respPhotos.data.filter(
