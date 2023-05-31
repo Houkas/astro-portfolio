@@ -6,6 +6,7 @@
   let photos: Photo[] = [];
   let photoSelectedDisplayed: boolean = false;
   let photoSelected: Photo | null = null;
+  let photosToDisplay: Photo[] = [];
 
   onMount(async () => {
     await fetch("https://api.hugo-richard-work.fr/api/photos?pagination[page]=1&pagination[pageSize]=1000")
@@ -20,11 +21,12 @@
   function openPopupPhoto(photo: Photo) {
     photoSelectedDisplayed = !photoSelectedDisplayed
     photoSelected = photo;
+    photosToDisplay = photos.filter(p => p.attributes.description === photo.attributes.description);
   }
 </script>
 
 {#if photoSelectedDisplayed === true}
-  <PhotoSelected photo={photoSelected} bind:photoSelectedDisplayed/>
+  <PhotoSelected photo={photoSelected} photosSwiper={photosToDisplay} bind:photoSelectedDisplayed/>
 {/if}
 <div class="w-full flex flex-col justify-center items-center">
   <h1 class="text-center uppercase m-5 title-hugo">Photos</h1>
