@@ -1,18 +1,19 @@
 <script>
-  import { onMount,afterUpdate } from "svelte";
+  import { onMount } from "svelte";
   // import function to register Swiper custom elements
   import { register } from "swiper/element/bundle";
 
   export let photos;
   let currentUrl;
 
-
+  register();
 
   onMount(async () => {
-    currentUrl = window.location.pathname;
 
+    currentUrl = window.location.pathname;
     const swiperEl = document.querySelector("swiper-container");
     swiperEl.initialize();
+    
   });
 </script>
 

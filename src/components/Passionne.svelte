@@ -1,9 +1,11 @@
 <script>
   import { onMount } from "svelte";
-  import SwiperCards from "./SwiperCards.svelte";
 
-  let photos = [];
-  let photosShuffled = [];
+  let photos= [];
+  let photosShuffled= [];
+  import { register } from "swiper/element/bundle";
+
+  register();
 
   onMount(async () => {
     await fetch("https://api.hugo-richard-work.fr/api/photos")
@@ -12,6 +14,8 @@
         photos = respPhotos.data;
         photosShuffled = photos.sort(() => 0.35 - Math.random());
       });
+    const swiperEl = document.querySelector("swiper-container");
+    swiperEl.initialize();
   });
 </script>
 
@@ -20,7 +24,27 @@
     Passionné
   </h2>
 
-  <SwiperCards photos={photosShuffled} />
+  <swiper-container
+    pagination="true"
+    init="false"
+    class={"flex flex-row items-center w-screen"}
+  >
+    {#each photosShuffled as photo, i}
+      {#if i < 3}
+        <swiper-slide class="flex flex-row items-center my-5">
+          <div class="flex flex-row items-center justify-center">
+            <a href="/photos" class="flex flex-row items-center justify-center">
+              <img
+                class="block sm:w-full lg:w-1/2"
+                src={photo.attributes.lien_photo}
+                alt={photo.attributes.description}
+              />
+            </a>
+          </div>
+        </swiper-slide>
+      {/if}
+    {/each}
+  </swiper-container>
 </div>
 
 <style>
@@ -32,4 +56,16 @@
     letter-spacing: 5px;
     font-family: "Noto Serif", serif;
   }
+  swiper-slide {
+    text-align: center;
+    font-size: 18px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .swiper-pagination-bullet-active {
+     background-color: #000 !important;
+  }
+
 </style>
