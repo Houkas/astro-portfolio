@@ -1,8 +1,8 @@
 <script>
   import { onMount } from "svelte";
 
-  let photos= [];
-  let photosShuffled= [];
+  let photos = [];
+  let photosShuffled = [];
   import { register } from "swiper/element/bundle";
 
   register();
@@ -19,11 +19,10 @@
   });
 </script>
 
-<div class="flex flex-col h-screen justify-center">
+<div class="flex flex-col h-screen">
   <h2 class="text-center uppercase relative top-2 title-passion m-5">
     Passionné
   </h2>
-
   <swiper-container
     pagination="true"
     init="false"
@@ -31,7 +30,7 @@
   >
     {#each photosShuffled as photo, i}
       {#if i < 3}
-        <swiper-slide class="flex flex-row items-center my-5">
+        <swiper-slide class="flex flex-row mb-5 h-[35vh] md:h-[75vh]">
           <div class="flex flex-row items-center justify-center">
             <a href="/photos" class="flex flex-row items-center justify-center">
               <img
@@ -65,7 +64,6 @@
     align-items: center;
   }
   .swiper-pagination-bullet-active {
-     background-color: #000 !important;
+    background-color: #000 !important;
   }
-
 </style>
