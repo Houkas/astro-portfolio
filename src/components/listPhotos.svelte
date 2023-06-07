@@ -18,7 +18,12 @@
       .then((respPhotos) => {
         photos = respPhotos.data.filter(
           (d: Photo) => d.attributes.lien_photo_compressed !== null
-        );
+        ).sort((a:Photo, b:Photo) =>{
+           
+          var c = new Date(a.attributes.createdAt).getDate();
+          var d = new Date(b.attributes.createdAt).getDate();
+          return  c - d 
+        });
       });
   });
   // promise = getFilteredPhotos();
