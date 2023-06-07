@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import type { Photo } from "../models/photo";
   import SwiperCards from "./SwiperCards.svelte";
+  import { fade } from "svelte/transition";
 
   export let photo: Photo | null;
   export let photoSelectedDisplayed = false;
@@ -43,46 +44,56 @@
   });
 </script>
 
-<div
-  class="fixed h-screen w-screen bg-white flex flex-col justify-center items-center"
->
+{#if photo}
   <div
-    class="absolute z-[999] top-[50px] md:right-[10px] right-[0px] cursor-pointer"
+    transition:fade="{{duration:500}}"
+    class="fixed h-screen w-screen bg-white flex flex-col justify-center items-center"
   >
-    <img
-      src="/close_dark.svg"
-      alt="close button"
-      class="close-button"
-      on:click={() => (photoSelectedDisplayed = !photoSelectedDisplayed)}
-      on:keydown={() => {}}
-    />
-  </div>
-  <div
-    class="relative top-[-20px] md:top-[0px] flex flex-col justify-center items-center"
-  >
-    <div class="w-screen max-w-[600px]" id="musiqueHtml">
-      {@html photo?.attributes.musique}
+    <div
+      class="absolute z-[999] top-[50px] md:right-[10px] right-[0px] cursor-pointer"
+    >
+      <img
+        src="/close_dark.svg"
+        alt="close button"
+        class="close-button"
+        on:click={() => (photoSelectedDisplayed = !photoSelectedDisplayed)}
+        on:keydown={() => {}}
+      />
     </div>
-    <div>
-      <a
-        href={photo?.attributes.lien_photo}
-        target="_blank"
-        class="flex flex-row justify-center"
-        >{#if photosSwiper.length > 0}
-          <SwiperCards photos={photosSwiper} />
-        {:else}
-          <img
-            id="photoDiplayed"
-            src={photo?.attributes.lien_photo}
-            alt={photo?.attributes.description}
-            class="sm:w-full lg:w-1/2"
-          />
-        {/if}
-      </a>
+    <div
+      class="relative top-[-20px] md:top-[0px] flex flex-col justify-center items-center"
+    >
+      <div
+        class="w-screen max-w-[600px]"
+        id="musiqueHtml"
+        transition:fade={{ duration: 1000 }}
+      >
+        {@html photo?.attributes.musique}
+      </div>
+      <div>
+        <a
+          href={photo?.attributes.lien_photo}
+          target="_blank"
+          class="flex flex-row justify-center"
+          >{#if photosSwiper.length > 0}
+            <SwiperCards photos={photosSwiper} />
+          {:else}
+            <img
+              transition:fade={{ duration: 1000 }}
+              id="photoDiplayed"
+              src={photo?.attributes.lien_photo}
+              alt={photo?.attributes.description}
+              class="sm:w-full lg:w-1/2"
+            />
+          {/if}
+        </a>
+      </div>
+      <span transition:fade={{ duration: 1000 }} class="title-photo"
+        >{photo?.attributes.description}</span
+      >
     </div>
-    <span class="title-photo">{photo?.attributes.description}</span>
   </div>
-</div>
+{/if}
 
 <style>
   #musiqueHtml iframe {

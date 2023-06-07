@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   // import function to register Swiper custom elements
   import { register } from "swiper/element/bundle";
+  import { fade } from 'svelte/transition';
 
   export let photos;
   let currentUrl;
@@ -23,9 +24,9 @@
   class={"flex flex-row items-center w-screen h-[45vh] " +
     (currentUrl === "/" ? "md:h-screen" : "md:h-full")}
 >
-  {#each photos as photo, i}
-    {#if i < 3}
-      <swiper-slide class="flex flex-row items-center">
+  {#each photos as photo}
+
+      <swiper-slide class="flex flex-row items-center" transition:fade>
         <div class="flex flex-row items-center justify-center">
           <a href="/photos" class="flex flex-row items-center justify-center">
             <img
@@ -36,7 +37,7 @@
           </a>
         </div>
       </swiper-slide>
-    {/if}
+
   {/each}
 </swiper-container>
 
