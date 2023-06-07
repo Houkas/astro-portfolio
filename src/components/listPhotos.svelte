@@ -11,17 +11,17 @@
   let photosToDisplay: Photo[] = [];
 
   onMount(() => {
-    // fetch(
-    //   "https://api.hugo-richard-work.fr/api/photos?pagination[page]=1&pagination[pageSize]=1000"
-    // )
-    //   .then((r) => r.json())
-    //   .then((respPhotos) => {
-    //     photos = respPhotos.data.filter(
-    //       (d: Photo) => d.attributes.lien_photo_compressed !== null
-    //     );
-    //   });
+    fetch(
+      "https://api.hugo-richard-work.fr/api/photos?pagination[page]=1&pagination[pageSize]=1000"
+    )
+      .then((r) => r.json())
+      .then((respPhotos) => {
+        photos = respPhotos.data.filter(
+          (d: Photo) => d.attributes.lien_photo_compressed !== null
+        );
+      });
   });
-  promise = getFilteredPhotos();
+  // promise = getFilteredPhotos();
 
   async function getFilteredPhotos(): Promise<Photo[]> {
     const res = await fetch(
@@ -34,7 +34,6 @@
   }
 
   function openPopupPhoto(photo: Photo) {
-    photoSelectedDisplayed = !photoSelectedDisplayed;
     photoSelected = photo;
     photosToDisplay = photos.filter(
       (p) => p.attributes.description === photo.attributes.description
@@ -44,13 +43,9 @@
     );
     photosToDisplay.splice(indexPhotoSelected, 1);
     photosToDisplay.unshift(photoSelected);
+    photoSelectedDisplayed = !photoSelectedDisplayed;
   }
 
-  function delay(milliseconds: number) {
-    return new Promise((resolve) => {
-      setTimeout(resolve, milliseconds);
-    });
-  }
 </script>
 
 {#if photoSelectedDisplayed === true}
@@ -63,7 +58,7 @@
 <div class="w-full flex flex-col justify-center items-center">
   <h1 class="text-center uppercase m-5 title-hugo">Photos</h1>
   <div class="flex flex-row flex-wrap justify-center max-w-[750px]">
-    {#await promise then photos}
+    <!-- {#await promise then photos} -->
       {#each photos as photo}
         {#key photo}
 
@@ -82,7 +77,7 @@
 
         {/key}
       {/each}
-    {/await}
+    <!-- {/await} -->
   </div>
 </div>
 
