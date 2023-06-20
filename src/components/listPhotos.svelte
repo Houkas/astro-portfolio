@@ -68,6 +68,8 @@
         {#key photo}
 
             <img
+              width="225"
+              height="150"
               in:fade={{ duration: 1000 }}
               src={photo.attributes.lien_photo_compressed}
               alt={photo.attributes.description}

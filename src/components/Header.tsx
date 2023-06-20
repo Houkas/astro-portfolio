@@ -7,6 +7,8 @@ export default function Header() {
     <>
       <div class="flex flex-row-reverse fixed top-0 right-0 z-[20]">
         <img
+          width='48'
+          height='48'
           class="cursor-pointer relative z-[11]"
           src="/burger_bg.svg"
           alt="menu burger"
@@ -23,6 +25,8 @@ export default function Header() {
 
           <div class="flex flex-col justify-center items-center h-[100vh]">
             <img
+              width='14'
+              height='14'
               src="/close.svg"
               alt="close button"
               class="close-button "
