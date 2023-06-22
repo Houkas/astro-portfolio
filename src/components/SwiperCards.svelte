@@ -30,9 +30,11 @@
         <div class="flex flex-row items-center justify-center">
           <a href="/photos" class="flex flex-row items-center justify-center">
             <img
+              transition:fade
               class="block sm:w-full lg:w-1/2"
               src={photo.attributes.lien_photo}
               alt="test"
+              loading="lazy"
             />
           </a>
         </div>
