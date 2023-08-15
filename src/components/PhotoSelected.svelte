@@ -88,7 +88,7 @@
           {/if}
         </a>
       </div>
-      <span transition:fade={{ duration: 1000 }} class="title-photo"
+      <span transition:fade={{ duration: 1000 }} class="title-photo text-center"
         >{photo?.attributes.description}</span
       >
     </div>
