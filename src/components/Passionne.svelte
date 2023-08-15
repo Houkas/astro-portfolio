@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import { fade } from 'svelte/transition';
+  import { fade } from "svelte/transition";
 
   let photos = [];
   let photosShuffled = [];
@@ -31,16 +31,26 @@
   >
     {#each photosShuffled as photo, i}
       {#if i < 3}
-        <swiper-slide class="flex flex-row mb-5 h-[35vh] md:h-[75vh]" transition:fade>
+        <swiper-slide
+          class="flex flex-row mb-5 h-[35vh] md:h-[75vh]"
+          transition:fade
+        >
           <div class="flex flex-row items-center justify-center">
-            <a href="/photos" class="flex flex-row items-center justify-center">
-              <img
+            <a class="flex flex-row items-center justify-center" href="/photos">
+              <div
                 transition:fade
-                class="block sm:w-full lg:w-1/2"
-                src={photo.attributes.lien_photo}
-                alt={photo.attributes.description}
-                loading="lazy"
-              />
+                class="blur-load block sm:w-full lg:w-1/2"
+                style="background-image: url({photo.attributes
+                  .lien_photo_compressed});"
+              >
+                <img
+                  transition:fade
+                  
+                  src={photo.attributes.lien_photo}
+                  alt={photo.attributes.description}
+                  loading="lazy"
+                />
+              </div>
             </a>
           </div>
         </swiper-slide>
