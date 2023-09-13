@@ -33,7 +33,7 @@
       {#if i < 3}
         <swiper-slide class="flex flex-row mb-5 h-[35vh] md:h-[75vh]" transition:fade>
           <div class="flex flex-row items-center justify-center">
-            <a href="/photos" class="flex flex-row items-center justify-center">
+            <a href="/galerie-photos" class="flex flex-row items-center justify-center">
               <img
                 transition:fade
                 class="block sm:w-full lg:w-1/2"
