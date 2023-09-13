@@ -5,7 +5,7 @@ export default function Header() {
 
   return (
     <>
-      <div class="flex flex-row-reverse fixed top-0 right-0 z-[20]">
+      <div class="flex flex-row-reverse fixed top-0 right-0 z-[100]">
         <img
           width='48'
           height='48'

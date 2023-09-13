@@ -37,7 +37,7 @@
         >
           <div class="flex flex-row items-center justify-center">
             <a href="/galerie-photos" class="flex flex-row items-center justify-center">
-              <img
+              <div
                 transition:fade
                 class="blur-load block sm:w-full lg:w-1/2"
                 style="background-image: url({photo.attributes
@@ -50,7 +50,7 @@
                   alt={photo.attributes.description}
                   loading="lazy"
                 />
-              </div>
+                </div>
             </a>
           </div>
         </swiper-slide>
