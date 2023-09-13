@@ -9,9 +9,15 @@ const photos: Photo[] = data.data;
 <script>
 
     const carouselItems: any = document.querySelector('.carousel-items');
-    const activeItem = document.querySelector('.active-item');
+    const activeItem = document.querySelector('.active-item-img');
     const activeItemImage = document.createElement('img');
     activeItem!.appendChild(activeItemImage);
+
+
+    const activeItemData = document.querySelector('.active-item-data');
+    const musicContainer = document.createElement('div');
+    musicContainer.className = 'max-w-[500px]';
+    activeItemData!.appendChild(musicContainer);
 
     function lerp(start: number, end: number, t: number){
         return start * (1 -t) + end * t;
@@ -39,9 +45,17 @@ const photos: Photo[] = data.data;
                         lastActive.classList.remove('.active')
                     }
                     item.classList.add('active');
+
                     const src = item.querySelector("img")!.dataset.photolink;
                     if(src)
                         activeItemImage.src = src
+
+                    const musique = item.querySelector("img")!.dataset.musique;
+                    if(musique){
+                        musicContainer.innerHTML = musique;
+                    }
+                       
+                   
                     lastActive = item;
                     currentLeftMostItem = item;
                 }
@@ -61,21 +75,29 @@ const photos: Photo[] = data.data;
 </script>
 
 <Layout title="Photos - photos amateur">
-    <div class="container flex flex-col w-screen h-screen">
-        <span>Gallerie</span>
-        <div class="carousel-items">
+    <div class="flex flex-col w-screen h-screen">
+        <h1 class="text-center uppercase m-5 title-hugo">Galerie photos</h1>
+        <div class="carousel-items z-50">
             <!-- loop photo -> carousel-item ->img -->
             {
                 photos.map((photo) => 
                     <div class="carousel-item">
-                        <img src={photo.attributes.lien_photo_compressed} alt={photo.attributes.description} data-photolink={photo.attributes.lien_photo}/>
+                        <img 
+                            src={photo.attributes.lien_photo_compressed}
+                            alt={photo.attributes.description}
+                            data-photolink={photo.attributes.lien_photo}
+                            data-musique={photo.attributes.musique}
+                        />
                     </div>
                 )
             }
         </div>
-        <div class="w-screen h-screen flex items-center justify-center">
-            <div class="active-item w-1/2">
+        <div class="w-screen h-screen flex flex-col justify-center md:flex-row md:justify-center md:mt-[25px]">
+            <div class="active-item-img w-[90%] md:w-1/2 items-center  z-50 ml-5">
                 <!--img -->
+            </div>
+            <div class="active-item-data mt-2 flex w-full md:w-1/3 justify-center ">
+                <!-- data -->
             </div>
         </div>
        
@@ -86,13 +108,13 @@ const photos: Photo[] = data.data;
 <style>
     .carousel-items{
         position: fixed;
-        top: 0;
+        bottom: 0;
         left: 0;
         display: flex;
         gap: 5px;
     }
     .carousel-item{
-        width: 150px;
+        width: 100px;
     }
     .active-item{
         /*width: 450px;*/
@@ -101,6 +123,5 @@ const photos: Photo[] = data.data;
     img{
         width: 100%;
         height: 100%;
-        object-fit: cover;
     }
 </style>
