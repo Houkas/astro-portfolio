@@ -1,0 +1,106 @@
+---
+import Layout from "../layouts/Layout.astro";
+import type { Photo } from "../models/photo";
+const response = await fetch('https://api.hugo-richard-work.fr/api/photos?pagination[page]=1&pagination[pageSize]=1000');
+const data = await response.json();
+const photos: Photo[] = data.data;
+
+---
+<script>
+
+    const carouselItems: any = document.querySelector('.carousel-items');
+    const activeItem = document.querySelector('.active-item');
+    const activeItemImage = document.createElement('img');
+    activeItem!.appendChild(activeItemImage);
+
+    function lerp(start: number, end: number, t: number){
+        return start * (1 -t) + end * t;
+    }
+
+    let currentX = 0;
+    let lastScrollY = 0;
+
+    window.addEventListener("wheel", (e) => {
+        lastScrollY += e.deltaY; 
+        let maxScroll = carouselItems!.scrollWidth - window.innerWidth
+        lastScrollY = Math.min(Math.max(lastScrollY, 0), maxScroll)
+    });
+
+    let lastActive: Element | null = null;
+    let currentLeftMostItem: Element | null = null;
+
+    function checkAndUpdateActiveItem(){
+        let allItems = document.querySelectorAll(".carousel-item");
+        for(let item of allItems){
+            const rect = item.getBoundingClientRect();
+            if(rect.left >= 0 && rect.left < 10){
+                if(currentLeftMostItem != item){
+                    if(lastActive){
+                        lastActive.classList.remove('.active')
+                    }
+                    item.classList.add('active');
+                    const src = item.querySelector("img")!.dataset.photolink;
+                    if(src)
+                        activeItemImage.src = src
+                    lastActive = item;
+                    currentLeftMostItem = item;
+                }
+                break;
+            }
+        }
+    }
+
+    function animate(){
+        currentX = lerp(currentX, lastScrollY, 0.075);
+        carouselItems!.style.transform = `translateX(-${currentX}px)`;
+        checkAndUpdateActiveItem();
+        requestAnimationFrame(animate)
+    }
+
+    animate();
+</script>
+
+<Layout title="Photos - photos amateur">
+    <div class="container flex flex-col w-screen h-screen">
+        <span>Gallerie</span>
+        <div class="carousel-items">
+            <!-- loop photo -> carousel-item ->img -->
+            {
+                photos.map((photo) => 
+                    <div class="carousel-item">
+                        <img src={photo.attributes.lien_photo_compressed} alt={photo.attributes.description} data-photolink={photo.attributes.lien_photo}/>
+                    </div>
+                )
+            }
+        </div>
+        <div class="w-screen h-screen flex items-center justify-center">
+            <div class="active-item w-1/2">
+                <!--img -->
+            </div>
+        </div>
+       
+    </div>
+</Layout>
+
+
+<style>
+    .carousel-items{
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        gap: 5px;
+    }
+    .carousel-item{
+        width: 150px;
+    }
+    .active-item{
+        /*width: 450px;*/
+        /*height: 550px;*/
+    }
+    img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+</style>
