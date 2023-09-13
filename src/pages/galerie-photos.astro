@@ -6,7 +6,9 @@ const response = await fetch(
   "https://api.hugo-richard-work.fr/api/photos?pagination[page]=1&pagination[pageSize]=1000"
 );
 const data = await response.json();
-const photos: Photo[] = data.data.filter((x: Photo) => x.attributes.lien_photo_compressed);
+const photos: Photo[] = data.data.filter(
+  (x: Photo) => x.attributes.lien_photo_compressed
+);
 ---
 
 <script>
@@ -55,6 +57,12 @@ const photos: Photo[] = data.data.filter((x: Photo) => x.attributes.lien_photo_c
     lastScrollY = Math.min(Math.max(lastScrollY, 0), maxScroll);
   });
 
+  window.addEventListener("touchmove", function () {
+    //touchmove works for iOS, I don't know if Android supports it
+    const event = document.createEvent("WheelEvent");
+    event.initEvent("wheel", false, true);
+    document.dispatchEvent(event);
+  });
   let lastActive: Element | null = null;
   let currentLeftMostItem: Element | null = null;
 
@@ -111,8 +119,12 @@ const photos: Photo[] = data.data.filter((x: Photo) => x.attributes.lien_photo_c
 </script>
 
 <Layout title="Photos - photos amateur">
-  <Header client:load></Header>
-  <h1 class="text-center uppercase m-5 title-hugo absolute md:unset md:w-full items-center">Galerie photos</h1>
+  <Header client:load />
+  <h1
+    class="text-center uppercase m-5 title-hugo absolute md:unset md:w-full items-center"
+  >
+    Galerie photos
+  </h1>
   <div class="flex flex-col w-screen h-screen justify-center">
     <div class="carousel-items z-50">
       <!-- loop photo -> carousel-item ->img -->
@@ -139,7 +151,7 @@ const photos: Photo[] = data.data.filter((x: Photo) => x.attributes.lien_photo_c
         <!--img -->
       </div>
       <div
-        class="active-item-data md:mx-8 mt-2 flex flex-col w-full md:w-1/3  justify-center"
+        class="active-item-data md:mx-8 mt-2 flex flex-col w-full md:w-1/3 justify-center"
       >
         <!-- data -->
       </div>
