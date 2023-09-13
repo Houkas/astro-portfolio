@@ -1,0 +1,167 @@
+---
+import Layout from "../layouts/Layout.astro";
+import type { Photo } from "../models/photo";
+const response = await fetch(
+  "https://api.hugo-richard-work.fr/api/photos?pagination[page]=1&pagination[pageSize]=1000"
+);
+const data = await response.json();
+const photos: Photo[] = data.data.filter((x: Photo) => x.attributes.lien_photo_compressed);
+---
+
+<script>
+  const carouselItems: any = document.querySelector(".carousel-items");
+  const activeItem = document.querySelector(".active-item-img");
+  const activeItemImage = document.createElement("img");
+  activeItem!.appendChild(activeItemImage);
+
+  const activeItemData = document.querySelector(".active-item-data");
+
+  const descriptionContainer = document.createElement("h2");
+  descriptionContainer.className = "title-photo mb-2";
+  activeItemData!.appendChild(descriptionContainer);
+
+  const lieuxContainer = document.createElement("span");
+  lieuxContainer.className = "mb-2";
+  activeItemData!.appendChild(lieuxContainer);
+
+  const filmContainer = document.createElement("span");
+  filmContainer.className = "mb-2 ";
+  activeItemData!.appendChild(filmContainer);
+
+  const musicContainer = document.createElement("div");
+  musicContainer.className = "max-w-[500px] mt-2";
+  activeItemData!.appendChild(musicContainer);
+
+  let allItems = document.querySelectorAll(".carousel-item");
+  console.log(allItems);
+
+  allItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      setActiveItem(item);
+      animate();
+    });
+  });
+
+  function lerp(start: number, end: number, t: number) {
+    return start * (1 - t) + end * t;
+  }
+
+  let currentX = 0;
+  let lastScrollY = 0;
+
+  window.addEventListener("wheel", (e) => {
+    lastScrollY += e.deltaY;
+    let maxScroll = carouselItems!.scrollWidth - window.innerWidth;
+    lastScrollY = Math.min(Math.max(lastScrollY, 0), maxScroll);
+  });
+
+  let lastActive: Element | null = null;
+  let currentLeftMostItem: Element | null = null;
+
+  function checkAndUpdateActiveItem() {
+    for (let item of allItems) {
+      const rect = item.getBoundingClientRect();
+      if (rect.left >= 0 && rect.left < 10) {
+        if (currentLeftMostItem != item) {
+          if (lastActive) {
+            lastActive.classList.remove(".active");
+          }
+          item.classList.add("active");
+
+          setActiveItem(item);
+        }
+        break;
+      }
+    }
+  }
+
+  function setActiveItem(item: Element) {
+    const src = item.querySelector("img")!.dataset.photolink;
+    if (src) activeItemImage.src = src;
+
+    const description = item.querySelector("img")!.dataset.description;
+    if (description) {
+      descriptionContainer.innerHTML = description;
+    }
+    const lieux = item.querySelector("img")!.dataset.lieux;
+    if (lieux) {
+      lieuxContainer.innerHTML = lieux;
+    }
+    const film = item.querySelector("img")!.dataset.film;
+    if (film) {
+      filmContainer.innerHTML = film;
+    }
+    const musique = item.querySelector("img")!.dataset.musique;
+    if (musique) {
+      musicContainer.innerHTML = musique;
+    }
+
+    lastActive = item;
+    currentLeftMostItem = item;
+  }
+
+  function animate() {
+    currentX = lerp(currentX, lastScrollY, 0.075);
+    carouselItems!.style.transform = `translateX(-${currentX}px)`;
+    checkAndUpdateActiveItem();
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+</script>
+
+<Layout title="Photos - photos amateur">
+  <h1 class="text-center uppercase m-5 title-hugo absolute md:unset md:w-full items-center">Galerie photos</h1>
+  <div class="flex flex-col w-screen h-screen justify-center">
+    <div class="carousel-items z-50">
+      <!-- loop photo -> carousel-item ->img -->
+      {
+        photos.map((photo) => (
+          <a class="carousel-item cursor-pointer">
+            <img
+              src={photo.attributes.lien_photo_compressed}
+              alt={photo.attributes.description}
+              data-photolink={photo.attributes.lien_photo}
+              data-musique={photo.attributes.musique}
+              data-description={photo.attributes.description}
+              data-lieux={photo.attributes.lieux}
+              data-film={photo.attributes.film_simulation}
+            />
+          </a>
+        ))
+      }
+    </div>
+    <div
+      class="w-screen flex flex-col justify-center md:flex-row md:justify-center md:mt-[25px] z-50"
+    >
+      <div class="active-item-img w-[90%] md:w-1/2 items-center ml-5">
+        <!--img -->
+      </div>
+      <div
+        class="active-item-data md:mx-8 mt-2 flex flex-col w-full md:w-1/3  justify-center"
+      >
+        <!-- data -->
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .carousel-items {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    gap: 5px;
+  }
+  .carousel-item {
+    width: 100px;
+  }
+  .active-item {
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+</style>

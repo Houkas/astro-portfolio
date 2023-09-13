@@ -4,9 +4,6 @@ import type { Photo } from '../models/photo';
 
 import ListPhotos from '../components/listPhotos.svelte';
 import Header from '../components/Header';
-const response = await fetch('https://api.hugo-richard-work.fr/api/photos');
-const data = await response.json();
-const photos: Photo[] = data.data;
 
 ---
 

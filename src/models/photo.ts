@@ -8,6 +8,8 @@ interface PhotoAttributes{
     description: string
     photo_compressed: string,
     lien_photo_compressed: string,
+    lieux: string,
+    film_simulation: string
 
 }
 

@@ -10,18 +10,18 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/node": "^5.3.3",
-    "@astrojs/solid-js": "^2.2.0",
-    "@astrojs/svelte": "^3.1.0",
-    "@astrojs/tailwind": "^4.0.0",
-    "astro": "^2.10.7",
-    "astro-compress": "^2.0.10",
+    "@astrojs/node": "^6.0.0",
+    "@astrojs/solid-js": "^3.0.0",
+    "@astrojs/svelte": "^4.0.0",
+    "@astrojs/tailwind": "^5.0.0",
+    "astro": "^3.0.13",
+    "astro-compress": "^2.0.15",
     "solid-js": "^1.7.11",
     "svelte": "^4.2.0",
-    "swiper": "^10.1.0",
+    "swiper": "^10.2.0",
     "tailwindcss": "^3.3.3"
   },
   "devDependencies": {
-    "sass": "^1.65.1"
+    "sass": "^1.66.1"
   }
 }

@@ -36,8 +36,8 @@
           transition:fade
         >
           <div class="flex flex-row items-center justify-center">
-            <a class="flex flex-row items-center justify-center" href="/photos">
-              <div
+            <a href="/galerie-photos" class="flex flex-row items-center justify-center">
+              <img
                 transition:fade
                 class="blur-load block sm:w-full lg:w-1/2"
                 style="background-image: url({photo.attributes

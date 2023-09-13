@@ -37,7 +37,7 @@ export default function Header() {
                 <a href="/">Accueil</a>
               </li>
               <li class="menu-item">
-                <a href="/photos">Photos</a>
+                <a href="/galerie-photos">Galerie photos</a>
               </li>
               <li class="menu-item">
                 <a href="https://www.instagram.com/hugo_richard_/" target="_blank">
