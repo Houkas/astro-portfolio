@@ -52,17 +52,29 @@ const photos: Photo[] = data.data.filter(
   let lastScrollY = 0;
 
   window.addEventListener("wheel", (e) => {
+    debugger;
     lastScrollY += e.deltaY;
     let maxScroll = carouselItems!.scrollWidth - window.innerWidth;
     lastScrollY = Math.min(Math.max(lastScrollY, 0), maxScroll);
   });
+  let startY = 0;
 
-  window.addEventListener("touchmove", function () {
-    //touchmove works for iOS, I don't know if Android supports it
-    const event = document.createEvent("WheelEvent");
-    event.initEvent("wheel", false, true);
-    document.dispatchEvent(event);
+  document.addEventListener("touchstart", function (event) {
+    startY = event.touches[0].pageX;
   });
+
+  window.addEventListener("touchmove", function (event) {
+
+    //event.preventDefault(); // Prevent the default touch scroll behavior
+
+    var deltaY = startY - event.touches[0].pageX;
+
+    // Create a new WheelEvent and dispatch it
+    lastScrollY += deltaY;
+    let maxScroll = carouselItems!.scrollWidth - window.innerWidth;
+    lastScrollY = Math.min(Math.max(lastScrollY, 0), maxScroll);
+  });
+
   let lastActive: Element | null = null;
   let currentLeftMostItem: Element | null = null;
 
