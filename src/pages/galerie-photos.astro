@@ -60,6 +60,7 @@ const photos: Photo[] = data.data.filter(
   let startY = 0;
 
   document.addEventListener("touchstart", function (event) {
+    if(event && event.touches)
     startY = event.touches[0].pageX;
   });
 
