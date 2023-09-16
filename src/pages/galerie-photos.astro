@@ -13,13 +13,13 @@ const photos: Photo[] = data.data.filter(
 
 <Layout title="Photos - photos amateur">
   <Header client:load />
-
+  <h1
+  class="text-center uppercase my-5 fixed w-full title-page md:unset md:w-full items-center"
+>
+  Galerie photos
+</h1>
   <div class="flex flex-col w-screen h-screen justify-center">
-    <h1
-    class="text-center uppercase mx-5 my-20 title-page md:unset md:w-full items-center"
-  >
-    Galerie photos
-  </h1>
+
     <div class="carousel-items z-50">
       <!-- loop photo -> carousel-item ->img -->
       {
